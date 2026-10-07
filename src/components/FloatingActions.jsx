@@ -51,17 +51,27 @@ export default function FloatingActions({ onBookClick }) {
     }
   }, [isOpen]);
 
-  // Close on click outside
+  // Close on click outside or on scroll
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
-    if (isOpen) {
-      document.addEventListener('pointerdown', handleClickOutside);
-    }
-    return () => document.removeEventListener('pointerdown', handleClickOutside);
+
+    const handleScrollClose = () => {
+      setIsOpen(false);
+    };
+
+    document.addEventListener('pointerdown', handleClickOutside);
+    window.addEventListener('scroll', handleScrollClose, { passive: true });
+
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside);
+      window.removeEventListener('scroll', handleScrollClose);
+    };
   }, [isOpen]);
 
   const scrollToTop = () => {
