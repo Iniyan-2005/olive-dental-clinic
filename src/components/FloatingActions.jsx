@@ -137,13 +137,13 @@ export default function FloatingActions({ onBookClick }) {
   return (
     <div
       ref={containerRef}
-      className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5"
+      className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2.5"
     >
       {/* 1. Scroll-to-Top Button — Above the expandable button */}
       <button
         ref={scrollTopRef}
         onClick={scrollToTop}
-        className="w-11 h-11 sm:w-12 sm:h-12 bg-white hover:bg-olive-50 text-olive-700 hover:text-olive-900 border-2 border-olive-300 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-200 hover:-translate-y-1 active:scale-95 group"
+        className="w-11 h-11 sm:w-12 sm:h-12 min-w-[44px] min-h-[44px] bg-white hover:bg-olive-50 text-olive-700 hover:text-olive-900 border-2 border-olive-300 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-200 hover:-translate-y-1 active:scale-95 flex-shrink-0 cursor-pointer group"
         aria-label="Scroll to top of page"
         title="Back to top"
         style={{ display: showScrollTop ? 'flex' : 'none' }}
@@ -204,7 +204,7 @@ export default function FloatingActions({ onBookClick }) {
       {/* 3. Main Expandable Contact Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`relative w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 focus:outline-none ${
+        className={`relative w-14 h-14 min-w-[56px] min-h-[56px] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 focus:outline-none flex-shrink-0 cursor-pointer ${
           isOpen
             ? 'bg-slate-800 text-white rotate-90 scale-95'
             : 'bg-olive-600 hover:bg-olive-700 text-white hover:scale-105 whatsapp-pulse'
@@ -219,7 +219,7 @@ export default function FloatingActions({ onBookClick }) {
         >
           <MessageCircle size={26} className="text-white" />
           {/* Notification pip */}
-          <span className="absolute 2.5 2.5 top-2.5 right-2.5 flex h-3.5 w-3.5">
+          <span className="absolute top-1 right-1 flex h-3.5 w-3.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#25D366] border-2 border-white"></span>
           </span>
