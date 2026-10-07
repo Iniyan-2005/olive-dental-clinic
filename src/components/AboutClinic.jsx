@@ -1,45 +1,58 @@
 import React, { useEffect, useRef } from 'react';
-import { CheckCircle, Award, Heart, Zap } from 'lucide-react';
+import { ShieldCheck, HeartPulse, Cpu, Sparkles, MapPin, CheckCircle2 } from 'lucide-react';
 import { clinicData } from '../data/clinicData';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const iconMap = {
-  'shield-check': CheckCircle,
-  'heart': Heart,
-  'cpu': Zap,
-  'badge-check': Award,
-};
+const clinicalStandards = [
+  {
+    title: 'Hospital-Grade Sterilization',
+    description: 'Strict multi-tier autoclaving and individually sealed sterile instrument packs for zero cross-contamination.',
+    icon: ShieldCheck,
+    tag: '100% Sterile'
+  },
+  {
+    title: 'Painless Local Anesthesia',
+    description: 'Computer-assisted gentle rotary endodontics and computerized numbing for completely stress-free procedures.',
+    icon: HeartPulse,
+    tag: 'Painless Protocol'
+  },
+  {
+    title: 'Low-Dose Digital Imaging',
+    description: 'Modern intraoral sensors with minimal radiation, providing immediate high-resolution diagnostic clarity.',
+    icon: Cpu,
+    tag: 'Digital Suite'
+  },
+  {
+    title: 'Ethical & Transparent Estimates',
+    description: 'Itemized treatment roadmaps provided upfront with clear pricing and zero unnecessary interventions.',
+    icon: Sparkles,
+    tag: 'Clear Pricing'
+  }
+];
 
 export default function AboutClinic({ onBookClick }) {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const imageRef = useRef(null);
-  const featuresRef = useRef(null);
+  const matrixRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(textRef.current,
-        { x: -60, opacity: 0 },
+        { x: -40, opacity: 0 },
         {
-          x: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+          x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
         }
       );
       gsap.fromTo(imageRef.current,
-        { x: 60, opacity: 0 },
+        { x: 40, opacity: 0 },
         {
-          x: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+          x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' }
-        }
-      );
-      gsap.fromTo(featuresRef.current.children,
-        { y: 30, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power2.out',
-          scrollTrigger: { trigger: featuresRef.current, start: 'top 80%' }
         }
       );
     }, sectionRef);
@@ -47,104 +60,133 @@ export default function AboutClinic({ onBookClick }) {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="section-pad bg-white">
+    <section id="about" ref={sectionRef} className="py-20 lg:py-28 bg-white">
       <div className="container-custom">
 
-        {/* Section header */}
-        <div className="text-center mb-14">
-          <span className="badge bg-olive-100 text-olive-700 text-sm mb-3">Why Choose Us</span>
-          <h2 className="section-title text-3xl md:text-4xl">About Olive Dental Care</h2>
-          <p className="text-slate-500 mt-3 max-w-xl mx-auto text-base">
-            A trusted dental clinic in Pudupet, Egmore — combining modern technology with compassionate patient care.
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-olive-100 text-olive-800 text-xs font-bold tracking-wider uppercase mb-3">
+            <span>Clinic Identity & Clinical Standards</span>
+          </div>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-tight">
+            Advanced Dentistry Built on <br />
+            <span className="text-olive-700">Compassion & Transparency.</span>
+          </h2>
+          <p className="text-slate-600 mt-4 text-base sm:text-lg leading-relaxed">
+            Conveniently located at 36/58, Eagappan St, Pudupet (Egmore), Olive Dental Care is designed to bring world-class oral healthcare to Chennai families with genuine care and ethical practice.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        {/* 2-Column Split: Clinic Philosophy & Real Exterior Signage */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-16">
 
-          {/* Text Side */}
-          <div ref={textRef} className="space-y-6">
-            <div className="inline-block bg-olive-50 border-l-4 border-olive-500 rounded-r-xl px-5 py-4">
-              <p className="text-olive-800 font-semibold text-lg italic">
-                "Your Smile, Our Passion"
+          {/* Left Text Narrative */}
+          <div ref={textRef} className="lg:col-span-7 space-y-6">
+            <div className="border-l-4 border-olive-700 pl-5 py-1">
+              <p className="font-display font-bold text-xl sm:text-2xl text-slate-900 leading-snug">
+                "Your Smile, Our Passion."
+              </p>
+              <p className="text-xs text-slate-500 font-medium mt-1 uppercase tracking-wider">
+                Official Motto of Olive Dental Care · Pudupet, Chennai
               </p>
             </div>
 
-            <p className="text-slate-600 leading-relaxed text-base">
-              At <strong className="text-olive-700">Olive Dental Care</strong>, we combine cutting-edge dental technology with
-              a warm, patient-first approach. Located in the heart of <strong>Pudupet, Egmore, Chennai</strong>, we provide
-              comprehensive dental care for the entire family — from toddlers to seniors.
-            </p>
-            <p className="text-slate-600 leading-relaxed text-base">
-              Our specializations include <strong>Invisalign & Braces, Dental Implants, Painless Root Canal (RCT),
-              Laser Dentistry, Periodontics, Cosmetic Dentistry</strong>, and Pediatric Dentistry — all under one roof
-              in a sterile, modern clinical environment.
+            <p className="text-slate-600 text-base leading-relaxed">
+              We understand that visiting the dentist has historically caused hesitation or anxiety. At Olive Dental Care, we completely eliminate fear through gentle chairside manners, modern painless anesthesia techniques, and transparent explanations before any procedure begins.
             </p>
 
-            {/* Specializations pill list */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {['Orthodontics', 'Periodontics', 'Pedodontics', 'Prosthodontics', 'Endodontics (RCT)', 'Maxillofacial Surgery', 'Implantology', 'Laser Dentistry'].map(s => (
-                <span key={s} className="bg-olive-50 border border-olive-200 text-olive-700 rounded-full px-3 py-1 text-xs font-semibold">
-                  {s}
-                </span>
-              ))}
+            <p className="text-slate-600 text-base leading-relaxed">
+              Our clinic brings eight specialized disciplines together under one roof — ranging from <strong>Invisalign & Orthodontics</strong> to <strong>Titanium Dental Implants</strong>, <strong>Single-Visit Rotary Root Canals</strong>, and <strong>Pediatric Child Dental Care</strong>.
+            </p>
+
+            {/* Department Directory Pills with English + Tamil Context */}
+            <div className="pt-2">
+              <p className="text-xs uppercase font-bold tracking-wider text-slate-400 mb-3">
+                In-House Specialized Disciplines:
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                {[
+                  { en: 'Orthodontics', ta: 'பல் சீரமைத்தல்' },
+                  { en: 'Implantology', ta: 'பல் மாற்று அறுவை' },
+                  { en: 'Endodontics (RCT)', ta: 'வேர் சிகிச்சை' },
+                  { en: 'Pedodontics', ta: 'குழந்தைகள் பிரிவு' },
+                  { en: 'Periodontics', ta: 'ஈறு நோய்கள்' },
+                  { en: 'Prosthodontics', ta: 'செயற்கை பல்' },
+                  { en: 'Oral Surgery', ta: 'தாடை அறுவை' },
+                  { en: 'Laser Care', ta: 'லேசர் மருத்துவம்' }
+                ].map((spec) => (
+                  <div key={spec.en} className="p-2.5 rounded-xl bg-[#F8F6F0] border border-slate-200/80">
+                    <p className="text-xs font-bold text-slate-800 leading-tight">{spec.en}</p>
+                    <p className="text-[10px] text-olive-700 font-medium mt-0.5">{spec.ta}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <button onClick={onBookClick} className="btn-primary mt-2">
-              Book a Consultation
-            </button>
+            <div className="pt-3">
+              <button onClick={onBookClick} className="btn-primary text-sm font-semibold">
+                Schedule a Consultation
+              </button>
+            </div>
           </div>
 
-          {/* Image Side */}
-          <div ref={imageRef} className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
+          {/* Right Image: Clinic Signboard / Operatory Display */}
+          <div ref={imageRef} className="lg:col-span-5 relative">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
               <img
                 src="/clinic-front.jpg"
-                alt="Olive Dental Care - Clinic Front"
-                className="w-full h-72 md:h-96 object-cover"
+                alt="Olive Dental Care - Reception and Department Signage"
+                className="w-full h-80 sm:h-96 lg:h-[460px] object-cover"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
               {/* Fallback */}
-              <div className="hidden w-full h-72 md:h-96 bg-gradient-to-br from-olive-50 to-mint-50 flex-col items-center justify-center border-2 border-olive-100 rounded-3xl">
-                <div className="text-center p-6">
-                  <div className="w-24 h-24 bg-olive-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-4xl">🦷</span>
-                  </div>
-                  <h3 className="font-display font-bold text-2xl text-olive-800 mb-1">OLIVE</h3>
-                  <p className="text-olive-600 font-semibold mb-3">DENTAL CARE</p>
-                  <p className="text-slate-500 text-sm">Pudupet, Egmore, Chennai</p>
-                  <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                    <span className="bg-olive-100 text-olive-700 text-xs rounded-full px-2 py-1">✅ Sterile Environment</span>
-                    <span className="bg-olive-100 text-olive-700 text-xs rounded-full px-2 py-1">🦷 Modern Equipment</span>
-                  </div>
-                </div>
+              <div className="hidden w-full h-80 sm:h-96 lg:h-[460px] bg-olive-800 flex-col items-center justify-center text-white text-center p-8">
+                <span className="text-6xl mb-3">🌿</span>
+                <p className="font-display font-bold text-2xl">Olive Dental Care</p>
+                <p className="text-olive-200 text-sm mt-1">Eagappan St, Pudupet, Egmore</p>
               </div>
-            </div>
 
-            {/* Floating tag */}
-            <div className="absolute bottom-3 left-3 sm:-bottom-4 sm:-left-4 bg-white rounded-2xl px-4 py-2 sm:px-5 sm:py-3 shadow-xl border border-olive-100">
-              <p className="text-[11px] sm:text-xs text-slate-500 font-medium">Specialized In</p>
-              <p className="font-display font-bold text-olive-700 text-xs sm:text-sm">9+ Dental Treatments</p>
+              {/* In-frame badge */}
+              <div className="absolute bottom-4 left-4 right-4 bg-slate-900/85 backdrop-blur-md rounded-2xl p-3.5 text-white border border-white/10 flex items-center justify-between">
+                <div>
+                  <p className="text-[11px] font-semibold text-olive-300 uppercase tracking-wider">Clinical Facility</p>
+                  <p className="font-display font-bold text-sm">Pudupet, Egmore, Chennai</p>
+                </div>
+                <span className="text-xs font-bold bg-olive-700 px-3 py-1 rounded-lg">Verified</span>
+              </div>
             </div>
           </div>
+
         </div>
 
-        {/* Feature cards */}
-        <div ref={featuresRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {clinicData.features.map((feature) => {
-            const Icon = iconMap[feature.icon] || CheckCircle;
-            return (
-              <div key={feature.title} className="card p-6 hover:-translate-y-1 transition-transform border border-olive-50 text-center">
-                <div className="w-12 h-12 bg-olive-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-olive-600" />
+        {/* Distinctive 4-Quadrant Clinical Standards Matrix (Replacing Generic Individual Cards) */}
+        <div ref={matrixRef} className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+            {clinicalStandards.map((std) => {
+              const Icon = std.icon;
+              return (
+                <div key={std.title} className="p-7 space-y-3 hover:bg-[#FBF9F5] transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="w-10 h-10 rounded-xl bg-olive-100/70 text-olive-800 flex items-center justify-center">
+                      <Icon size={20} className="text-olive-700" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+                      {std.tag}
+                    </span>
+                  </div>
+                  <h3 className="font-display font-bold text-base text-slate-900 leading-snug">
+                    {std.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {std.description}
+                  </p>
                 </div>
-                <h3 className="font-display font-bold text-slate-800 text-base mb-2">{feature.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
       </div>
