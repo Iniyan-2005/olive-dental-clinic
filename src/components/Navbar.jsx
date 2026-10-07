@@ -60,28 +60,28 @@ export default function Navbar({ onBookClick }) {
 
   return (
     <>
-      {/* Promo strip */}
-      <div className="bg-olive-600 text-white text-center text-xs sm:text-sm py-2 px-3 sm:px-4 font-medium w-full overflow-hidden">
-        <div className="flex items-center justify-center gap-1.5 flex-wrap">
-          <span className="sm:hidden">
-            🦷 <strong>Mon 50% OFF</strong> Check-Up &nbsp;|&nbsp;
-          </span>
-          <span className="hidden sm:inline">
-            🦷 Every Monday — <strong>50% OFF</strong> on Dental Check-Up! &nbsp;|&nbsp;
-          </span>
-          <span>
-            Call: <a href={`tel:${clinicData.contact.phone1}`} className="underline font-bold tracking-tight">{clinicData.contact.displayPhone1}</a>
-          </span>
+      {/* Fixed Navbar Container */}
+      <div className={`fixed top-0 left-0 right-0 z-40 w-full bg-white transition-shadow duration-300 ${
+        scrolled ? 'shadow-md' : 'shadow-sm'
+      }`}>
+        {/* Promo strip */}
+        <div className="bg-olive-600 text-white text-center text-xs sm:text-sm py-2 px-3 sm:px-4 font-medium w-full overflow-hidden">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap">
+            <span className="sm:hidden">
+              🦷 <strong>Mon 50% OFF</strong> Check-Up &nbsp;|&nbsp;
+            </span>
+            <span className="hidden sm:inline">
+              🦷 Every Monday — <strong>50% OFF</strong> on Dental Check-Up! &nbsp;|&nbsp;
+            </span>
+            <span>
+              Call: <a href={`tel:${clinicData.contact.phone1}`} className="underline font-bold tracking-tight">{clinicData.contact.displayPhone1}</a>
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* Navbar — no GSAP y-transform; use CSS transition only */}
-      <header
-        className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${
-          scrolled ? 'shadow-md' : 'shadow-sm'
-        }`}
-      >
-        <div className="container-custom">
+        {/* Header */}
+        <header className="bg-white">
+          <div className="container-custom">
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* Logo */}
@@ -166,6 +166,10 @@ export default function Navbar({ onBookClick }) {
           </div>
         </div>
       </header>
+      </div>
+
+      {/* Spacer so the page content starts right below the fixed navbar */}
+      <div className="h-[96px] sm:h-[104px] md:h-[116px] w-full" aria-hidden="true" />
     </>
   );
 }
