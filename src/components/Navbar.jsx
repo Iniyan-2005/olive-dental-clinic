@@ -61,9 +61,18 @@ export default function Navbar({ onBookClick }) {
   return (
     <>
       {/* Promo strip */}
-      <div className="bg-olive-600 text-white text-center text-xs sm:text-sm py-2 px-4 font-medium">
-        🦷 Every Monday — <strong>50% OFF</strong> on Dental Check-Up!&nbsp;|&nbsp;
-        Call: <a href={`tel:${clinicData.contact.phone1}`} className="underline font-bold">{clinicData.contact.displayPhone1}</a>
+      <div className="bg-olive-600 text-white text-center text-xs sm:text-sm py-2 px-3 sm:px-4 font-medium w-full overflow-hidden">
+        <div className="flex items-center justify-center gap-1.5 flex-wrap">
+          <span className="sm:hidden">
+            🦷 <strong>Mon 50% OFF</strong> Check-Up &nbsp;|&nbsp;
+          </span>
+          <span className="hidden sm:inline">
+            🦷 Every Monday — <strong>50% OFF</strong> on Dental Check-Up! &nbsp;|&nbsp;
+          </span>
+          <span>
+            Call: <a href={`tel:${clinicData.contact.phone1}`} className="underline font-bold tracking-tight">{clinicData.contact.displayPhone1}</a>
+          </span>
+        </div>
       </div>
 
       {/* Navbar — no GSAP y-transform; use CSS transition only */}

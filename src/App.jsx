@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col text-slate-800 antialiased">
+    <div className="min-h-screen flex flex-col text-slate-800 antialiased overflow-x-hidden w-full max-w-full">
       <Navbar onBookClick={() => handleOpenBooking()} />
 
       <main className="flex-1">

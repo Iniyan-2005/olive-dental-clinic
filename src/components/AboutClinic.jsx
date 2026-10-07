@@ -124,9 +124,9 @@ export default function AboutClinic({ onBookClick }) {
             </div>
 
             {/* Floating tag */}
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-5 py-3 shadow-xl border border-olive-100">
-              <p className="text-xs text-slate-500 font-medium">Specialized In</p>
-              <p className="font-display font-bold text-olive-700 text-sm">9+ Dental Treatments</p>
+            <div className="absolute bottom-3 left-3 sm:-bottom-4 sm:-left-4 bg-white rounded-2xl px-4 py-2 sm:px-5 sm:py-3 shadow-xl border border-olive-100">
+              <p className="text-[11px] sm:text-xs text-slate-500 font-medium">Specialized In</p>
+              <p className="font-display font-bold text-olive-700 text-xs sm:text-sm">9+ Dental Treatments</p>
             </div>
           </div>
         </div>
