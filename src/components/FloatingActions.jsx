@@ -178,7 +178,7 @@ export default function FloatingActions({ onBookClick }) {
             onBookClick();
             setIsOpen(false);
           }}
-          className="flex items-center gap-2.5 bg-olive-600 hover:bg-olive-700 text-white px-4 py-2.5 rounded-full shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group"
+          className="flex items-center gap-2.5 bg-olive-700 hover:bg-olive-800 text-white px-4 py-2.5 rounded-full shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group"
           aria-label="Book Appointment"
         >
           <span className="text-xs sm:text-sm font-semibold tracking-wide">Book Online</span>
@@ -207,7 +207,7 @@ export default function FloatingActions({ onBookClick }) {
         className={`relative w-14 h-14 min-w-[56px] min-h-[56px] rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 focus:outline-none flex-shrink-0 cursor-pointer ${
           isOpen
             ? 'bg-slate-800 text-white rotate-90 scale-95'
-            : 'bg-olive-600 hover:bg-olive-700 text-white hover:scale-105 whatsapp-pulse'
+            : 'bg-olive-700 hover:bg-olive-800 text-white hover:scale-105 whatsapp-pulse'
         }`}
         aria-label={isOpen ? 'Close contact menu' : 'Open contact options'}
       >

@@ -60,7 +60,7 @@ export default function AboutClinic({ onBookClick }) {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 lg:py-28 bg-white">
+    <section id="about" ref={sectionRef} className="py-20 lg:py-28 bg-white scroll-mt-28">
       <div className="container-custom">
 
         {/* Section Header */}

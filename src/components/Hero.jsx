@@ -54,7 +54,7 @@ export default function Hero({ onBookClick }) {
   const whatsappUrl = `https://wa.me/${clinicData.contact.whatsappNumber}?text=Hello%20Olive%20Dental%20Care%2C%20I%20would%20like%20to%20book%20an%20appointment.`;
 
   return (
-    <section id="home" ref={heroRef} className="relative bg-[#FBF9F5] overflow-hidden py-8 sm:py-12 lg:py-16">
+    <section id="home" ref={heroRef} className="relative bg-[#FBF9F5] overflow-hidden py-8 sm:py-12 lg:py-16 scroll-mt-32">
 
       {/* Subtle architectural background texture */}
       <div className="absolute inset-0 hero-pattern pointer-events-none opacity-50" />

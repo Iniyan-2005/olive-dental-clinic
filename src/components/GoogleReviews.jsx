@@ -32,7 +32,7 @@ export default function GoogleReviews() {
   }, []);
 
   return (
-    <section id="reviews" ref={sectionRef} className="py-20 lg:py-28 bg-[#FBF9F5] border-t border-slate-200/80">
+    <section id="reviews" ref={sectionRef} className="py-20 lg:py-28 bg-[#FBF9F5] border-t border-slate-200/80 scroll-mt-28">
       <div className="container-custom">
 
         {/* Section Header */}
