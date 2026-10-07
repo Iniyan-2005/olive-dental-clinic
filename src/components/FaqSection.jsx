@@ -25,7 +25,7 @@ function FaqItem({ faq, index }) {
             {index + 1}
           </span>
           <span className="font-display font-bold text-slate-900 text-sm sm:text-base leading-snug">
-            {faq.question}
+            {faq.q || faq.question}
           </span>
         </div>
         <ChevronDown
@@ -37,8 +37,8 @@ function FaqItem({ faq, index }) {
       </button>
 
       {open && (
-        <div className="px-5 pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100">
-          <p>{faq.answer}</p>
+        <div className="px-5 pb-5 pt-3 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 bg-[#FCFBF8]">
+          <p>{faq.a || faq.answer}</p>
         </div>
       )}
     </div>
