@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, MessageCircle, Calendar, X, Sparkles } from 'lucide-react';
+import { Phone, MessageCircle, Calendar, X, ArrowUp } from 'lucide-react';
 import { clinicData } from '../data/clinicData';
 import { gsap } from 'gsap';
 
 export default function FloatingActions({ onBookClick }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const containerRef = useRef(null);
   const menuRef = useRef(null);
+  const scrollTopRef = useRef(null);
 
-  // Entrance animation
+  // Entrance animation for main action button
   useEffect(() => {
     gsap.fromTo(
       containerRef.current,
@@ -16,6 +18,26 @@ export default function FloatingActions({ onBookClick }) {
       { scale: 1, opacity: 1, duration: 0.5, delay: 1, ease: 'back.out(1.7)' }
     );
   }, []);
+
+  // Track scroll position for scroll-to-top visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Animate scroll-to-top button in
+  useEffect(() => {
+    if (scrollTopRef.current && showScrollTop) {
+      gsap.fromTo(
+        scrollTopRef.current,
+        { scale: 0, opacity: 0, y: 10 },
+        { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: 'back.out(1.7)' }
+      );
+    }
+  }, [showScrollTop]);
 
   // Menu expand / collapse animation
   useEffect(() => {
@@ -42,16 +64,37 @@ export default function FloatingActions({ onBookClick }) {
     return () => document.removeEventListener('pointerdown', handleClickOutside);
   }, [isOpen]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const whatsappUrl = `https://wa.me/${clinicData.contact.whatsappNumber}?text=Hello%20Olive%20Dental%20Care%21%20I%27d%20like%20to%20inquire%20about%20an%20appointment.`;
 
   return (
-    <div ref={containerRef} className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end">
+    <div
+      ref={containerRef}
+      className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5"
+    >
+      {/* 1. Upward Arrow Button — Placed ON TOP of the expandable button */}
+      {showScrollTop && (
+        <button
+          ref={scrollTopRef}
+          onClick={scrollToTop}
+          className="w-11 h-11 sm:w-12 sm:h-12 bg-white hover:bg-olive-50 text-olive-700 hover:text-olive-900 border-2 border-olive-300 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-200 hover:-translate-y-1 active:scale-95 group"
+          aria-label="Scroll to top of page"
+          title="Back to top"
+        >
+          <ArrowUp size={20} className="stroke-[2.5] text-olive-600 group-hover:-translate-y-0.5 transition-transform duration-200" />
+        </button>
+      )}
 
-      {/* Expanded Actions Menu */}
+      {/* 2. Expanded Actions Menu (when open) */}
       {isOpen && (
-        <div ref={menuRef} className="flex flex-col items-end gap-2.5 mb-3 select-none">
-
-          {/* 1. WhatsApp Button */}
+        <div ref={menuRef} className="flex flex-col items-end gap-2.5 my-1 select-none">
+          {/* WhatsApp Button */}
           <a
             href={whatsappUrl}
             target="_blank"
@@ -66,7 +109,7 @@ export default function FloatingActions({ onBookClick }) {
             </div>
           </a>
 
-          {/* 2. Book Appointment Button */}
+          {/* Book Appointment Button */}
           <button
             onClick={() => {
               onBookClick();
@@ -81,7 +124,7 @@ export default function FloatingActions({ onBookClick }) {
             </div>
           </button>
 
-          {/* 3. Call Clinic Button */}
+          {/* Call Clinic Button */}
           <a
             href={`tel:${clinicData.contact.phone1}`}
             onClick={() => setIsOpen(false)}
@@ -96,7 +139,7 @@ export default function FloatingActions({ onBookClick }) {
         </div>
       )}
 
-      {/* Main Floating Trigger Button */}
+      {/* 3. Main Expandable Contact Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`relative w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 focus:outline-none ${
@@ -119,13 +162,6 @@ export default function FloatingActions({ onBookClick }) {
           </>
         )}
       </button>
-
-      {/* Floating tooltip badge when closed (mobile & desktop) */}
-      {!isOpen && (
-        <span className="absolute right-16 top-1/2 -translate-y-1/2 bg-slate-900/90 backdrop-blur-sm text-white text-[11px] font-medium py-1 px-2.5 rounded-full shadow-md whitespace-nowrap pointer-events-none opacity-0 sm:opacity-100 transition-opacity">
-          Need Help? Tap here
-        </span>
-      )}
     </div>
   );
 }
