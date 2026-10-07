@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutClinic from './components/AboutClinic';
@@ -49,6 +50,8 @@ export default function App() {
           onClose={handleCloseBooking}
         />
       )}
+      
+      <Analytics />
     </div>
   );
 }
