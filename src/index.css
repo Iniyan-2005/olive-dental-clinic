@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -23,13 +23,13 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-olive-600 hover:bg-olive-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2;
+    @apply bg-olive-700 hover:bg-olive-800 text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 inline-flex items-center gap-2;
   }
   .btn-outline {
-    @apply border-2 border-olive-600 text-olive-600 hover:bg-olive-600 hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 inline-flex items-center gap-2;
+    @apply border-2 border-olive-700 text-olive-800 hover:bg-olive-700 hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 inline-flex items-center gap-2;
   }
   .section-title {
-    @apply font-display font-bold text-slate-800 leading-tight;
+    @apply font-display font-extrabold text-slate-900 tracking-tight leading-tight;
   }
   .card {
     @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300;

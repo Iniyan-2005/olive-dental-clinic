@@ -86,22 +86,26 @@ export default function Navbar({ onBookClick }) {
 
             {/* Logo */}
             <a href="#home" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-olive-600 rounded-full flex items-center justify-center shadow-md group-hover:bg-olive-700 transition-colors duration-200">
-                <span className="text-white text-xl font-bold">🦷</span>
+              <div className="w-10 h-10 md:w-11 md:h-11 bg-olive-700 rounded-xl flex items-center justify-center shadow-md group-hover:bg-olive-800 transition-colors duration-200">
+                <span className="text-white text-xl">🦷</span>
               </div>
               <div className="leading-tight">
-                <p className="font-display font-bold text-olive-700 text-base md:text-lg leading-none">OLIVE</p>
-                <p className="text-slate-500 text-xs font-semibold tracking-widest uppercase">Dental Care</p>
+                <p className="font-display font-extrabold text-slate-900 text-base md:text-lg tracking-tight">
+                  OLIVE <span className="text-olive-700">DENTAL</span>
+                </p>
+                <p className="text-slate-400 text-[10px] font-bold tracking-widest uppercase">
+                  Pudupet · Egmore
+                </p>
               </div>
             </a>
 
             {/* Desktop Nav Links */}
-            <nav ref={linksRef} className="hidden lg:flex items-center gap-6">
+            <nav ref={linksRef} className="hidden lg:flex items-center gap-7">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-slate-600 hover:text-olive-600 font-medium text-sm transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-olive-600 after:transition-all after:duration-300 hover:after:w-full"
+                  className="text-slate-600 hover:text-olive-800 font-semibold text-[13px] tracking-wide transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-olive-700 after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {link.label}
                 </a>
@@ -109,15 +113,18 @@ export default function Navbar({ onBookClick }) {
             </nav>
 
             {/* Desktop CTAs */}
-            <div ref={ctaRef} className="hidden lg:flex items-center gap-3">
+            <div ref={ctaRef} className="hidden lg:flex items-center gap-4">
               <a
                 href={`tel:${clinicData.contact.phone1}`}
-                className="flex items-center gap-2 text-olive-700 font-semibold text-sm hover:text-olive-900 transition-colors"
+                className="flex items-center gap-2 text-slate-700 font-bold text-xs tracking-tight hover:text-olive-800 transition-colors"
               >
-                <Phone size={16} className="text-olive-600" />
+                <Phone size={14} className="text-olive-700" />
                 {clinicData.contact.displayPhone1}
               </a>
-              <button onClick={onBookClick} className="btn-primary text-sm py-2.5">
+              <button
+                onClick={onBookClick}
+                className="btn-primary text-xs uppercase tracking-wider font-bold py-2.5 px-5 shadow-sm hover:shadow"
+              >
                 Book Appointment
               </button>
             </div>
